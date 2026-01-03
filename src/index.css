@@ -1,0 +1,130 @@
+:root {
+  --bg-color: #1a1a2e;
+  --text-color: #e0e0e0;
+  --primary-color: #ff0055; /* Neon Pink */
+  --secondary-color: #00ff99; /* Neon Green */
+  --accent-color: #00ccff; /* Neon Blue */
+  --card-bg: #16213e;
+  --font-heading: 'Press Start 2P', system-ui;
+  --font-body: 'VT323', monospace;
+  --pixel-border: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 24px;
+  line-height: 1.5;
+  -webkit-font-smoothing: none; /* Crucial for pixel art crispness */
+}
+
+h1, h2, h3, h4, button, input {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  color: var(--secondary-color);
+  text-shadow: 4px 4px 0px #000;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 
+    -4px 0 0 0 black,
+    4px 0 0 0 black,
+    0 -4px 0 0 black,
+    0 4px 0 0 black,
+    inset -4px -4px 0 0 rgba(0,0,0,0.3);
+  margin: 10px;
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 
+    -4px 0 0 0 black,
+    4px 0 0 0 black,
+    0 -4px 0 0 black,
+    0 0 0 0 black, /* Remove bottom shadow */
+    inset -4px -4px 0 0 rgba(0,0,0,0.3);
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input {
+  background: var(--card-bg);
+  border: 4px solid var(--accent-color);
+  color: white;
+  padding: 10px;
+  font-size: 1.2rem;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  outline: none;
+  box-shadow: 4px 4px 0px black;
+}
+
+input:focus {
+  border-color: var(--if-secondary-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pixel-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border: 4px solid #fff;
+  box-shadow: 8px 8px 0px #000;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+/* Helper for scanline effect (optional, maybe too distracting, keeping it simple for now) */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 999;
+}
